@@ -89,6 +89,7 @@ const ImageGallery = () => {
             onDragOver={onDragOver}
             onDrop={(e) => onDrop(e, image)}
             draggable
+            
             className={index === 0 ? "custom-grid" : ""}
           >
             <Image

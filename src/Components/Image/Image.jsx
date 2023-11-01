@@ -10,7 +10,7 @@ const Image = ({ image, onSelect, selected }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative image-container ">
+      <div className="relative">
         <img src={image.src} alt="Gallery Image" className="w-full h-full border-2 border-gray-300 rounded-md" />
         {selected && (
           <div className="absolute top-2 left-2">
