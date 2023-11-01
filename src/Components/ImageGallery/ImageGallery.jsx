@@ -287,14 +287,17 @@ const ImageGallery = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h3 className="mb-4">
+      <h3 className="mb-4 font-semibold text-lg">
         {selectedImages.length > 0 ? (
           <div className="flex items-center justify-between">
-            <div>
+            <div className="font-semibold text-lg">
               <input type="checkbox" className="m-2 cursor-pointer" checked />
               {`${selectedImages.length} Files Selected`}
             </div>
-            <div className="cursor-pointer" onClick={handleDeleteImages}>
+            <div
+              className="cursor-pointer text-red-500 font-semibold text-lg"
+              onClick={handleDeleteImages}
+            >
               Delete Selected Images
             </div>
           </div>
@@ -302,7 +305,7 @@ const ImageGallery = () => {
           "Gallery"
         )}
       </h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {images.map((image, index) => (
           <div
             key={image.id}
@@ -311,8 +314,8 @@ const ImageGallery = () => {
             onDrop={(e) => onDrop(e, image)}
             draggable
             style={{
-              gridColumn: index === 0 ? "span 1" : "span 1",
-              gridRow: index === 0 ? "span 2" : "span 1",
+              gridColumn: index === 0 ? "1 / 3" : "auto",
+              gridRow: index === 0 ? "1 / 3" : "auto",
             }}
           >
             <Image
