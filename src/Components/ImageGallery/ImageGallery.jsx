@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "../Image/Image";
 import './ImageGallery.css';
+import Spinner from "../Spinner/Spinner";
 
 const ImageGallery = () => {
   const [images, setImages] = useState([]);
   const [selectedImages, setSelectedImages] = useState([]);
   const [draggedImage, setDraggedImage] = useState(null);
   const fileInputRef = useRef();
+  const [isLoading, setIsLoading] = useState(true); // Add a state for loading
 
   const handleDeleteImages = () => {
     const updatedImages = images.filter(
@@ -48,7 +50,10 @@ const ImageGallery = () => {
     // Fetch data from data.json
     fetch("/data.json")
       .then((response) => response.json())
-      .then((data) => setImages(data))
+      .then((data) => {
+        setImages(data);
+        setIsLoading(false); // Set loading to false when images are loaded
+      })
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
@@ -81,33 +86,36 @@ const ImageGallery = () => {
         )}
       </h3>
       <hr />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-5">
-        {images.map((image, index) => (
-          <div
-            key={image.id}
-            onDragStart={(e) => onDragStart(e, image)}
-            onDragOver={onDragOver}
-            onDrop={(e) => onDrop(e, image)}
-            draggable
-            
-            className={index === 0 ? "custom-grid" : ""}
-          >
-            <Image
-              image={image}
-              onSelect={handleImageSelect}
-              selected={selectedImages.includes(image.id)}
-            />
-            {image.id === 12 && (
-              <h3
-                onClick={handleAddImageClick}
-                className={image.id === 12 ? "dotted-border" : ""}
-              >
-                Add image
-              </h3>
-            )}
-          </div>
-        ))}
-      </div>
+      {isLoading ? ( // Conditional rendering based on loading state
+        <Spinner/>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-5">
+          {images.map((image, index) => (
+            <div
+              key={image.id}
+              onDragStart={(e) => onDragStart(e, image)}
+              onDragOver={onDragOver}
+              onDrop={(e) => onDrop(e, image)}
+              draggable
+              className={index === 0 ? "custom-grid" : ""}
+            >
+              <Image
+                image={image}
+                onSelect={handleImageSelect}
+                selected={selectedImages.includes(image.id)}
+              />
+              {image.id === 12 && (
+                <h3
+                  onClick={handleAddImageClick}
+                  className={image.id === 12 ? "dotted-border" : ""}
+                >
+                  Add image
+                </h3>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
