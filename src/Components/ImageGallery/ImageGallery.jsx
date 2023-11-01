@@ -1,15 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "../Image/Image";
 import "./ImageGallery.css";
 import Spinner from "../Spinner/Spinner";
 
 const ImageGallery = () => {
-  const [images, setImages] = useState([]);
-  const [selectedImages, setSelectedImages] = useState([]);
-  const [draggedImage, setDraggedImage] = useState(null);
+  // State variables
+  const [images, setImages] = useState([]); // Store the list of images
+  const [selectedImages, setSelectedImages] = useState([]); // Store selected image IDs
+  const [draggedImage, setDraggedImage] = useState(null); // Store the image being dragged
+  const [isLoading, setIsLoading] = useState(true); // Loading state
 
-  const [isLoading, setIsLoading] = useState(true); // Add a state for loading
-
+  // Function to handle deleting selected images
   const handleDeleteImages = () => {
     const updatedImages = images.filter(
       (image) => !selectedImages.includes(image.id)
@@ -18,6 +19,7 @@ const ImageGallery = () => {
     setSelectedImages([]);
   };
 
+  // Function to toggle image selection
   const handleImageSelect = (id) => {
     if (selectedImages.includes(id)) {
       setSelectedImages(selectedImages.filter((imageId) => imageId !== id));
@@ -26,14 +28,17 @@ const ImageGallery = () => {
     }
   };
 
+  // Function to handle drag start
   const onDragStart = (e, image) => {
     setDraggedImage(image);
   };
 
+  // Function to handle drag over
   const onDragOver = (e) => {
     e.preventDefault();
   };
 
+  // Function to handle drop
   const onDrop = (e, targetImage) => {
     const updatedImages = images.slice();
     const draggedIndex = images.findIndex((image) => image === draggedImage);
@@ -46,8 +51,8 @@ const ImageGallery = () => {
     }
   };
 
+  // Fetch images from data.json using the useEffect hook
   useEffect(() => {
-    // Fetch data from data.json
     fetch("/data.json")
       .then((response) => response.json())
       .then((data) => {
@@ -56,7 +61,6 @@ const ImageGallery = () => {
       })
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
-
 
   return (
     <div className="container mx-auto p-4">
