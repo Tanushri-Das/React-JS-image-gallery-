@@ -1,11 +1,10 @@
-import { RouterProvider } from "react-router-dom";
 import "./App.css";
-import routes from "./Routes/Routes";
+import ImageGallery from "./Components/ImageGallery/ImageGallery";
 
 function App() {
   return (
     <div className="max-w-[1440px] mx-auto">
-      <RouterProvider router={routes}></RouterProvider>
+      <ImageGallery/>
     </div>
   );
 }
