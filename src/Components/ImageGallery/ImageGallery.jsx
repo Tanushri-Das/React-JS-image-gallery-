@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "../Image/Image";
-import './ImageGallery.css';
+import "./ImageGallery.css";
 import Spinner from "../Spinner/Spinner";
 
 const ImageGallery = () => {
   const [images, setImages] = useState([]);
   const [selectedImages, setSelectedImages] = useState([]);
   const [draggedImage, setDraggedImage] = useState(null);
-  const fileInputRef = useRef();
+
   const [isLoading, setIsLoading] = useState(true); // Add a state for loading
 
   const handleDeleteImages = () => {
@@ -57,9 +57,6 @@ const ImageGallery = () => {
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
-  const handleAddImageClick = () => {
-    fileInputRef.current.click();
-  };
 
   return (
     <div className="container mx-auto p-4">
@@ -87,7 +84,7 @@ const ImageGallery = () => {
       </h3>
       <hr />
       {isLoading ? ( // Conditional rendering based on loading state
-        <Spinner/>
+        <Spinner />
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-5">
           {images.map((image, index) => (
@@ -103,15 +100,8 @@ const ImageGallery = () => {
                 image={image}
                 onSelect={handleImageSelect}
                 selected={selectedImages.includes(image.id)}
+                addImageText={true} // Set this prop to true for image with id 12
               />
-              {image.id === 12 && (
-                <h3
-                  onClick={handleAddImageClick}
-                  className={image.id === 12 ? "dotted-border" : ""}
-                >
-                  Add image
-                </h3>
-              )}
             </div>
           ))}
         </div>
