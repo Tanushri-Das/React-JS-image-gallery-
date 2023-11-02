@@ -22,7 +22,7 @@ const Image = ({ image, onSelect, selected }) => {
         {image.id === 12 ? ( // Conditionally render content for image with ID 12
           <div className="flex flex-col items-center justify-center w-full h-full pt-[58px] rounded-md">
             <img
-              src={image.src}
+              src={image.img}
               alt="Gallery Image"
               className="w-24 h-24 rounded-md"
             />
@@ -30,7 +30,7 @@ const Image = ({ image, onSelect, selected }) => {
           </div>
         ) : (
           <img
-            src={image.src}
+            src={image.img}
             alt="Gallery Image"
             className="w-full h-full rounded-md"
           />
