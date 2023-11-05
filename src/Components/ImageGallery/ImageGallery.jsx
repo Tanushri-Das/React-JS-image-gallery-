@@ -104,7 +104,7 @@ const placeholderData = {
   };
 
   return (
-    <div className="container mx-auto lg:p-5">
+    <div className="container mx-auto lg:pt-5 lg:px-5 lg:pb-[1px]">
       <h3 className="mb-4 font-semibold text-xl">
         {selectedImages.length > 0 ? (
           <div className="flex items-center justify-between">
