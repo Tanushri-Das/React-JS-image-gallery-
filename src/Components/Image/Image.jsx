@@ -1,42 +1,365 @@
-import React, { useState } from 'react';
+// import React, { useState, useRef } from "react";
 
-const Image = ({ image, onSelect, selected }) => {
-  // State variable to track hover state
+// const Image = ({ image, onSelect, selected, onAddImage, nextId }) => {
+//   const [isHovered, setIsHovered] = useState(false);
+//   const fileInputRef = useRef(null);
+//   const [selectedFileName, setSelectedFileName] = useState(null);
+
+//   return (
+//     <div
+//       className={`relative ${
+//         selected ? "opacity-60" : ""
+//       } border-2 border-gray-300 rounded-md`}
+//       onMouseEnter={() => setIsHovered(true)}
+//       onMouseLeave={() => setIsHovered(false)}
+//     >
+//       <div className="relative">
+//         {typeof image.img === "string" ? (
+//           <img
+//             src={image.img}
+//             alt="Gallery Images"
+//             className="w-full h-full rounded-md"
+//           />
+//         ) : (
+//           <div
+//             className="flex flex-col items-center justify-center w-full h-full pt-[58px] rounded-md"
+//             onClick={onAddImage}
+//           >
+//             {image.img} {/* Render the JSX stored in the img property */}
+//           </div>
+//         )}
+
+//         {selected && image.id !== nextId && (
+//           <div className="absolute top-2 left-2">
+//             <input
+//               type="checkbox"
+//               className="m-3 cursor-pointer w-4 h-4"
+//               checked={selected}
+//               onChange={() => onSelect(image.id)}
+//             />
+//           </div>
+//         )}
+
+//         {isHovered && !selected && image.id !== nextId && (
+//           <div className="absolute inset-0 bg-black opacity-50 transition duration-300 rounded-md">
+//             <input
+//               type="checkbox"
+//               className="m-5 cursor-pointer w-5 h-5"
+//               checked={selected}
+//               onChange={() => onSelect(image.id)}
+//             />
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Image;
+
+// import React, { useState, useRef } from "react";
+
+// const Image = ({ image, onSelect, selected, onAddImage, nextId }) => {
+//   const [isHovered, setIsHovered] = useState(false);
+//   const fileInputRef = useRef(null);
+//   const [selectedFileName, setSelectedFileName] = useState(null);
+
+//   return (
+//     <div
+//       className={`relative ${
+//         selected ? "opacity-60" : ""
+//       } border-2 border-gray-300 rounded-md`}
+//       onMouseEnter={() => setIsHovered(true)}
+//       onMouseLeave={() => setIsHovered(false)}
+//     >
+//       <div className="relative">
+//         {typeof image.img === "string" ? (
+//           <img
+//             src={image.img}
+//             alt="Gallery Images"
+//             className="w-full h-full rounded-md"
+//           />
+//         ) : (
+//           <div
+//             className="flex flex-col items-center justify-center w-full h-full pt-[58px] rounded-md"
+//             onClick={onAddImage}
+//           >
+//             {image.img} {/* Render the JSX stored in the img property */}
+//           </div>
+//         )}
+
+//         {selected && image.id !== nextId && (
+//           <div className="absolute top-2 left-2">
+//             <input
+//               type="checkbox"
+//               className="m-3 cursor-pointer w-4 h-4"
+//               checked={selected}
+//               onChange={() => onSelect(image.id)}
+//             />
+//           </div>
+//         )}
+
+//         {isHovered && !selected && image.id !== nextId && (
+//           <div className="absolute inset-0 bg-black opacity-50 transition duration-300 rounded-md">
+//             <input
+//               type="checkbox"
+//               className="m-5 cursor-pointer w-5 h-5"
+//               checked={selected}
+//               onChange={() => onSelect(image.id)}
+//             />
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Image;
+
+
+
+
+
+// import React, { useState, useRef } from "react";
+
+// const Image = ({ image, onSelect, selected, onAddImage, nextId }) => {
+//   console.log("ImageId",image.id,"nextid", nextId)
+
+//   const [isHovered, setIsHovered] = useState(false);
+//   const fileInputRef = useRef(null);
+//   const [selectedFileName, setSelectedFileName] = useState(null);
+
+//   const handleFileInputChange = (e) => {
+//     const selectedFile = e.target.files[0];
+//     if (selectedFile) {
+//       setSelectedFileName(selectedFile.name);
+//       onAddImage(URL.createObjectURL(selectedFile)); // Add the selected image to the gallery
+//       fileInputRef.current.value = null; // Clear the input field
+//     }
+//   };
+
+//   const handleImageClick = () => {
+//     // Programmatically trigger a click on the hidden file input
+//     fileInputRef.current.click();
+//   };
+
+//   return (
+//     <div
+//       className={`relative ${
+//         selected ? "opacity-60" : ""
+//       } border-2 border-gray-300 rounded-md`}
+//       onMouseEnter={() => setIsHovered(true)}
+//       onMouseLeave={() => setIsHovered(false)}
+//     >
+//       <div className="relative">
+//         {typeof image.img === "string" ? (
+//           <img
+//             src={image.img}
+//             alt="Gallery Images"
+//             className="w-full h-full rounded-md"
+//           />
+//         ) : (
+//           <div
+//             className="flex flex-col items-center justify-center w-full h-full pt-[58px] rounded-md"
+//             onClick={handleImageClick} // Trigger the file input click when this div is clicked
+//           >
+//             {image.img} {/* Render the JSX stored in the img property */}
+//           </div>
+//         )}
+
+//         {selected && image.id !== nextId && (
+//           <div className="absolute top-2 left-2">
+//             <input
+//               type="checkbox"
+//               className="m-3 cursor-pointer w-4 h-4"
+//               checked={selected}
+//               onChange={() => onSelect(image.id)}
+//             />
+//           </div>
+//         )}
+
+//         {isHovered && !selected && image.id !== nextId && (
+//           <div className="absolute inset-0 bg-black opacity-50 transition duration-300 rounded-md">
+//             <input
+//               type="checkbox"
+//               className="m-5 cursor-pointer w-5 h-5"
+//               checked={selected}
+//               onChange={() => onSelect(image.id)}
+//             />
+//           </div>
+//         )}
+//       </div>
+
+//       {/* Hidden file input (visually hidden) */}
+//       <input
+//         type="file"
+//         accept="image/*"
+//         ref={fileInputRef}
+//         style={{ display: "none" }}
+//         onChange={handleFileInputChange}
+//       />
+
+//       {/* Display the selected image or file name */}
+//       {selectedFileName ? (
+//         <img
+//         src={image.img}
+//         alt="Gallery Images"
+//         className="w-full h-full rounded-md"
+//       />
+//       ) : null}
+//     </div>
+//   );
+// };
+
+// export default Image;
+
+
+
+
+// import React, { useState, useRef } from "react";
+
+// const Image = ({ image, onSelect, selected, onAddImage, nextId }) => {
+//   // console.log("ImageId",image.id,"nextid", nextId)
+
+//   const [isHovered, setIsHovered] = useState(false);
+//   const fileInputRef = useRef(null);
+//   const [selectedFileName, setSelectedFileName] = useState(null);
+
+//   const handleFileInputChange = (e) => {
+//     const selectedFile = e.target.files[0];
+//     if (selectedFile) {
+//       setSelectedFileName(selectedFile.name);
+//       onAddImage(URL.createObjectURL(selectedFile)); // Add the selected image to the gallery
+//       fileInputRef.current.value = null; // Clear the input field
+//     }
+//   };
+
+//   const handleImageClick = () => {
+//     // Programmatically trigger a click on the hidden file input
+//     fileInputRef.current.click();
+//   };
+
+//   return (
+//     <div
+//       className={`relative ${
+//         selected ? "opacity-60" : ""
+//       } border-2 border-gray-300 rounded-md`}
+//       onMouseEnter={() => setIsHovered(true)}
+//       onMouseLeave={() => setIsHovered(false)}
+//     >
+//       <div className="relative">
+//         {typeof image.img === "string" ? (
+//           <img
+//             src={image.img}
+//             alt="Gallery Images"
+//             className="w-full h-full rounded-md"
+//           />
+//         ) : (
+//           <div
+//             className="flex flex-col items-center justify-center w-full h-full pt-[58px] rounded-md"
+//             onClick={handleImageClick} // Trigger the file input click when this div is clicked
+//           >
+//             {image.img} {/* Render the JSX stored in the img property */}
+//           </div>
+//         )}
+
+//         {selected && image.id !== nextId && (
+//           <div className="absolute top-2 left-2">
+//             <input
+//               type="checkbox"
+//               className="m-3 cursor-pointer w-4 h-4"
+//               checked={selected}
+//               onChange={() => onSelect(image.id)}
+//             />
+//           </div>
+//         )}
+
+//         {isHovered && !selected && image.id !== nextId && (
+//           <div className="absolute inset-0 bg-black opacity-50 transition duration-300 rounded-md">
+//             <input
+//               type="checkbox"
+//               className="m-5 cursor-pointer w-5 h-5"
+//               checked={selected}
+//               onChange={() => onSelect(image.id)}
+//             />
+//           </div>
+//         )}
+//       </div>
+
+//       {/* Hidden file input (visually hidden) */}
+//       <input
+//         type="file"
+//         accept="image/*"
+//         ref={fileInputRef}
+//         style={{ display: "none" }}
+//         onChange={handleFileInputChange}
+//       />
+
+//       {/* Display the selected image or file name */}
+//       {selectedFileName ? (
+//         <img
+//         src={image.img}
+//         alt="Gallery Images"
+//         className="w-full h-full rounded-md"
+//       />
+//       ) : null}
+//     </div>
+//   );
+// };
+
+// export default Image;
+
+
+
+
+import React, { useState, useRef } from "react";
+
+const Image = ({ image, onSelect, selected, onAddImage, nextId }) => {
+  // console.log("ImageId",image.id,"nextid", nextId)
+
   const [isHovered, setIsHovered] = useState(false);
+  const fileInputRef = useRef(null);
+  const [selectedFileName, setSelectedFileName] = useState(null);
 
-  // Define a variable to store the border class
-  let borderClass = "border-2 border-gray-300 rounded-md";
+  const handleFileInputChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setSelectedFileName(selectedFile.name);
+      onAddImage(URL.createObjectURL(selectedFile)); // Add the selected image to the gallery
+      fileInputRef.current.value = null; // Clear the input field
+    }
+  };
 
-  // If the image has ID 12, update the border class to dashed
-  if (image.id === 12) {
-    borderClass = "border-2 border-gray-300 border-dashed rounded-md";
-  }
+  const handleImageClick = () => {
+    // Programmatically trigger a click on the hidden file input
+    fileInputRef.current.click();
+  };
 
   return (
     <div
-      className={`relative ${selected ? "opacity-60" : ""} ${borderClass}`}
-      onMouseEnter={() => setIsHovered(true)} // Set isHovered to true on mouse enter
-      onMouseLeave={() => setIsHovered(false)} // Set isHovered to false on mouse leave
+      className={`relative ${
+        selected ? "opacity-60" : ""
+      } border-2 border-gray-300 rounded-md`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative">
-        {image.id === 12 ? ( // Conditionally render content for image with ID 12
-          <div className="flex flex-col items-center justify-center w-full h-full pt-[58px] rounded-md">
-            <img
-              src={image.img}
-              alt="Gallery Image"
-              className="w-24 h-24 rounded-md"
-            />
-            <h3 className='mb-[83px] text-lg font-bold'>Add Images</h3>
-          </div>
-        ) : (
+        {typeof image.img === "string" ? (
           <img
             src={image.img}
-            alt="Gallery Image"
+            alt="Gallery Images"
             className="w-full h-full rounded-md"
           />
+        ) : (
+          <div
+            className="flex flex-col items-center justify-center w-full h-full pt-12 rounded-md"
+            onClick={handleImageClick} // Trigger the file input click when this div is clicked
+          >
+            {image.img} {/* Render the JSX stored in the img property */}
+          </div>
         )}
 
-        {selected && ( // Conditionally render checkbox if the image is selected
+        {selected && image.id !== nextId && (
           <div className="absolute top-2 left-2">
             <input
               type="checkbox"
@@ -47,7 +370,7 @@ const Image = ({ image, onSelect, selected }) => {
           </div>
         )}
 
-        {isHovered && !selected && ( // Conditionally render checkbox on hover if not selected
+        {isHovered && !selected && image.id !== nextId && (
           <div className="absolute inset-0 bg-black opacity-50 transition duration-300 rounded-md">
             <input
               type="checkbox"
@@ -58,6 +381,24 @@ const Image = ({ image, onSelect, selected }) => {
           </div>
         )}
       </div>
+
+      {/* Hidden file input (visually hidden) */}
+      <input
+        type="file"
+        accept="image/*"
+        ref={fileInputRef}
+        style={{ display: "none" }}
+        onChange={handleFileInputChange}
+      />
+
+      {/* Display the selected image or file name */}
+      {selectedFileName ? (
+        <img
+        src={image.img}
+        alt="Gallery Images"
+        className="w-full h-full rounded-md"
+      />
+      ) : null}
     </div>
   );
 };
