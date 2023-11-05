@@ -19,7 +19,7 @@ const ImageGallery = () => {
 const placeholderData = {
   id: nextId,
   img: (
-    <div className="flex flex-col items-center justify-center w-full h-64 sm:h-[290px] md:h-[230px] lg:h-[182px] xl:h-[233px] 2xl:h-[265px] rounded-md">
+    <div className="flex flex-col items-center justify-center w-full h-64 sm:h-[307px] md:h-[241px] lg:h-[180px] rounded-md">
       <FaImage size={32} />
       <h3 className="mt-4 text-lg font-bold">Add Image</h3>
     </div>
@@ -104,7 +104,7 @@ const placeholderData = {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto lg:p-5">
       <h3 className="mb-4 font-semibold text-xl">
         {selectedImages.length > 0 ? (
           <div className="flex items-center justify-between">
