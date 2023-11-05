@@ -1,30 +1,28 @@
 import React, { useState, useRef } from "react";
 
 const Image = ({ image, onSelect, selected, onAddImage, nextId }) => {
-
   const [isHovered, setIsHovered] = useState(false);
   const fileInputRef = useRef(null);
   const [selectedFileName, setSelectedFileName] = useState(null);
+  const [imageBorder, setImageBorder] = useState(nextId === image.id ? "border-2 border-dashed" : "border-2 border-gray-300");
 
   const handleFileInputChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
       setSelectedFileName(selectedFile.name);
-      onAddImage(URL.createObjectURL(selectedFile)); // Add the selected image to the gallery
-      fileInputRef.current.value = null; // Clear the input field
+      onAddImage(URL.createObjectURL(selectedFile));
+      fileInputRef.current.value = null;
+      setImageBorder("border-2 border-gray-300"); // Change border after image upload
     }
   };
 
   const handleImageClick = () => {
-    // Programmatically trigger a click on the hidden file input
     fileInputRef.current.click();
   };
 
   return (
     <div
-      className={`relative ${
-        selected ? "opacity-60" : ""
-      } border-2 border-gray-300 rounded-md`}
+      className={`relative ${selected ? "opacity-60" : ""} rounded-md ${imageBorder}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -37,10 +35,10 @@ const Image = ({ image, onSelect, selected, onAddImage, nextId }) => {
           />
         ) : (
           <div
-            className="flex flex-col items-center justify-center w-full h-full pt-12 rounded-md"
-            onClick={handleImageClick} // Trigger the file input click when this div is clicked
+            className="w-full h-full rounded-md"
+            onClick={handleImageClick}
           >
-            {image.img} {/* Render the JSX stored in the img property */}
+            {image.img}
           </div>
         )}
 
@@ -67,7 +65,6 @@ const Image = ({ image, onSelect, selected, onAddImage, nextId }) => {
         )}
       </div>
 
-      {/* Hidden file input (visually hidden) */}
       <input
         type="file"
         accept="image/*"
@@ -76,13 +73,12 @@ const Image = ({ image, onSelect, selected, onAddImage, nextId }) => {
         onChange={handleFileInputChange}
       />
 
-      {/* Display the selected image or file name */}
       {selectedFileName ? (
         <img
-        src={image.img}
-        alt="Gallery Images"
-        className="w-full h-full rounded-md"
-      />
+          src={image.img}
+          alt="Gallery Images"
+          className="w-full h-full rounded-md border-2 border-gray-300"
+        />
       ) : null}
     </div>
   );

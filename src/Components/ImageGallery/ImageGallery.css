@@ -1,6 +1,17 @@
 .dotted-border {
   border: 2px dotted #ccc;
 }
+
+/* .responsive-image-height {
+  height: 100%;
+}
+
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .responsive-image-height {
+    height: 290px
+  }
+} */
 /* Apply .custom-grid class only for large screens */
 @media (min-width: 1024px) {
   .custom-grid {

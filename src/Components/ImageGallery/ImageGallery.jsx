@@ -14,17 +14,20 @@ const ImageGallery = () => {
   // Start the ID numbering from 12
   let nextId = 12; // Change const to let
 
-  // Generate the placeholder data for next ID
-  const placeholderData = {
-    id: nextId,
-    img: (
-      <div className="flex flex-col items-center justify-center w-full h-full pt-[58px] rounded-md">
-        <FaImage size={32} />
-        <h3 className="mb-[83px] mt-4 text-lg font-bold">Add Image</h3>
-      </div>
-    ),
-    isFeature: false,
-  };
+
+// Generate the placeholder data for next ID
+const placeholderData = {
+  id: nextId,
+  img: (
+    <div className="flex flex-col items-center justify-center w-full h-64 sm:h-[290px] md:h-[230px] lg:h-[182px] xl:h-[233px] 2xl:h-[265px] rounded-md">
+      <FaImage size={32} />
+      <h3 className="mt-4 text-lg font-bold">Add Image</h3>
+    </div>
+  ),
+  isFeature: false,
+};
+
+
 
   useEffect(() => {
     fetch("/data.json")
@@ -128,7 +131,7 @@ const ImageGallery = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <div className="grid grid-cols-1 border-2 border-red-500 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 my-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 my-6">
           {images.map((image, index) => (
             <div
               key={image.id}
