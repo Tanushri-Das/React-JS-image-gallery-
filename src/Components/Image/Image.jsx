@@ -4,7 +4,9 @@ const Image = ({ image, onSelect, selected, onAddImage, nextId }) => {
   const [isHovered, setIsHovered] = useState(false);
   const fileInputRef = useRef(null);
   const [selectedFileName, setSelectedFileName] = useState(null);
-  const [imageBorder, setImageBorder] = useState(nextId === image.id ? "border-2 border-dashed" : "border-2 border-gray-300");
+
+  // Set the initial border based on whether this image is the next image to be added or not
+  const imageBorder = nextId === image.id ? "border-2 border-dashed" : "border-2 border-gray-300";
 
   const handleFileInputChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -85,5 +87,3 @@ const Image = ({ image, onSelect, selected, onAddImage, nextId }) => {
 };
 
 export default Image;
-
-

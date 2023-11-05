@@ -12,29 +12,30 @@ const ImageGallery = () => {
   const [addedImage, setAddedImage] = useState(null);
 
   // Start the ID numbering from 12
-  let nextId = 12; // Change const to let
+  let nextId = 12; 
 
-
-// Generate the placeholder data for next ID
-const placeholderData = {
-  id: nextId,
-  img: (
-    <div className="flex flex-col items-center justify-center w-full h-64 sm:h-[307px] md:h-[241px] lg:h-[180px] rounded-md">
-      <FaImage size={32} />
-      <h3 className="mt-4 text-lg font-bold">Add Image</h3>
-    </div>
-  ),
-  isFeature: false,
-};
-
-
+  // Generate the placeholder data for next ID
+  const placeholderData = {
+    id: nextId,
+    img: (
+      <div className="flex flex-col items-center justify-center w-full h-64 sm:h-[307px] md:h-[241px] lg:h-[180px] rounded-md">
+        <FaImage size={32} />
+        <h3 className="mt-4 text-lg font-bold">Add Image</h3>
+      </div>
+    ),
+    isFeature: false,
+  };
 
   useEffect(() => {
+    // Simulate fetching data from an API
+    // Replace with your actual data fetching logic
     fetch("/data.json")
       .then((response) => response.json())
       .then((data) => {
         setImages(data);
         setIsLoading(false);
+
+        // Combine fetched data with the placeholder data
         const combinedData = [...data, placeholderData];
         setImages(combinedData);
       });
@@ -74,6 +75,7 @@ const placeholderData = {
       // Add the new image to the existing images
       setImages(updatedImages);
 
+      // Set the added image (for demonstration purposes)
       setAddedImage(imageData);
 
       // Increment the nextId for the next image
@@ -158,9 +160,3 @@ const placeholderData = {
 };
 
 export default ImageGallery;
-
-
-
-
-
-
