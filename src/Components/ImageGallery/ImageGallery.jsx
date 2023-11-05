@@ -158,3 +158,9 @@ const placeholderData = {
 };
 
 export default ImageGallery;
+
+
+
+
+
+

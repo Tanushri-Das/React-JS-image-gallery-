@@ -22,7 +22,7 @@ const Image = ({ image, onSelect, selected, onAddImage, nextId }) => {
 
   return (
     <div
-      className={`relative ${selected ? "opacity-60" : ""} rounded-md ${imageBorder}`}
+      className={`relative h-full ${selected ? "opacity-60" : ""} rounded-md ${imageBorder}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -85,3 +85,5 @@ const Image = ({ image, onSelect, selected, onAddImage, nextId }) => {
 };
 
 export default Image;
+
+
